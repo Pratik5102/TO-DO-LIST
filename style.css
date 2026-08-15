@@ -70,3 +70,19 @@ ul{
         flex-shrink: 0;
     }
 }
+.delete-btn {
+    margin-left: 10px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    opacity: 0.8;
+}
+
+.delete-btn:focus {
+    outline: 2px solid;
+    outline-offset: 2px;
+}
