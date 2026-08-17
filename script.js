@@ -22,11 +22,7 @@ deleteButton.addEventListener("click", function() {
     li.remove();
 });
 
-li.addEventListener("click", function(event) {
-    if (event.target === deleteButton) {
-        return;
-    }
-
+li.addEventListener("click", function() {
     li.classList.toggle("completed");
 });
 
@@ -34,3 +30,4 @@ li.appendChild(deleteButton);
 taskList.appendChild(li);
 
 input.value = "";
+});
