@@ -12,22 +12,31 @@ form.addEventListener("submit", function(event) {
     }
 
     const li = document.createElement("li");
-li.textContent = task;
 
-const deleteButton = document.createElement("button");
-deleteButton.textContent = "Delete";
-deleteButton.classList.add("delete-btn");
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.classList.add("task-checkbox");
 
-deleteButton.addEventListener("click", function() {
-    li.remove();
-});
+    const taskText = document.createElement("span");
+    taskText.textContent = task;
 
-li.addEventListener("click", function() {
-    li.classList.toggle("completed");
-});
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete";
+    deleteButton.classList.add("delete-btn");
 
-li.appendChild(deleteButton);
-taskList.appendChild(li);
+    checkbox.addEventListener("change", function() {
+        li.classList.toggle("completed", checkbox.checked);
+    });
 
-input.value = "";
+    deleteButton.addEventListener("click", function() {
+        li.remove();
+    });
+
+    li.appendChild(checkbox);
+    li.appendChild(taskText);
+    li.appendChild(deleteButton);
+
+    taskList.appendChild(li);
+
+    input.value = "";
 });
