@@ -13,10 +13,11 @@ form.addEventListener("submit", function(event) {
         return;
     }
 
-    const newTask = {
-        text: task,
-        completed: false
-    };
+   const newTask = {
+    id: Date.now(),
+    text: task,
+    completed: false
+};
 
     tasks.push(newTask);
 
