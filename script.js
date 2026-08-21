@@ -27,15 +27,24 @@ function renderTasks() {
         }
 
         checkbox.addEventListener("change", function() {
-            task.completed = checkbox.checked;
-            renderTasks();
-        });
+    const taskToUpdate = tasks.find(function(item) {
+        return item.id === task.id;
+    });
 
-        deleteButton.addEventListener("click", function() {
-            const index = tasks.indexOf(task);
-            tasks.splice(index, 1);
-            renderTasks();
-        });
+    taskToUpdate.completed = checkbox.checked;
+
+    renderTasks();
+});
+
+       deleteButton.addEventListener("click", function() {
+    const index = tasks.findIndex(function(item) {
+        return item.id === task.id;
+    });
+
+    tasks.splice(index, 1);
+
+    renderTasks();
+});
 
         li.appendChild(checkbox);
         li.appendChild(taskText);
