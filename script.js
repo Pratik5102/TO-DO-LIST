@@ -35,8 +35,7 @@ function renderTasks() {
 
     renderTasks();
 });
-
-       deleteButton.addEventListener("click", function() {
+deleteButton.addEventListener("click", function() {
     const index = tasks.findIndex(function(item) {
         return item.id === task.id;
     });
