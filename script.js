@@ -26,7 +26,7 @@ function renderTasks() {
             li.classList.add("completed");
         }
 
-        checkbox.addEventListener("change", function() {
+       checkbox.addEventListener("change", function() {
     const taskToUpdate = tasks.find(function(item) {
         return item.id === task.id;
     });
