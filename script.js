@@ -1,8 +1,12 @@
-const tasks = [];
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
 const form = document.querySelector("form");
 const input = document.querySelector("#input");
 const taskList = document.querySelector("#list");
+
+function saveTasks() {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
 
 function renderTasks() {
     taskList.innerHTML = "";
@@ -26,24 +30,27 @@ function renderTasks() {
             li.classList.add("completed");
         }
 
-       checkbox.addEventListener("change", function() {
-    const taskToUpdate = tasks.find(function(item) {
-        return item.id === task.id;
-    });
+        checkbox.addEventListener("change", function() {
+            const taskToUpdate = tasks.find(function(item) {
+                return item.id === task.id;
+            });
 
-    taskToUpdate.completed = checkbox.checked;
+            taskToUpdate.completed = checkbox.checked;
+            saveTasks();
 
-    renderTasks();
-});
-deleteButton.addEventListener("click", function() {
-    const index = tasks.findIndex(function(item) {
-        return item.id === task.id;
-    });
+            renderTasks();
+        });
 
-    tasks.splice(index, 1);
+        deleteButton.addEventListener("click", function() {
+            const index = tasks.findIndex(function(item) {
+                return item.id === task.id;
+            });
 
-    renderTasks();
-});
+            tasks.splice(index, 1);
+            saveTasks();
+
+            renderTasks();
+        });
 
         li.appendChild(checkbox);
         li.appendChild(taskText);
@@ -62,13 +69,14 @@ form.addEventListener("submit", function(event) {
         return;
     }
 
-   const newTask = {
-    id: Date.now(),
-    text: task,
-    completed: false
-};
+    const newTask = {
+        id: Date.now(),
+        text: task,
+        completed: false
+    };
 
     tasks.push(newTask);
+    saveTasks();
 
     console.log(tasks);
 
@@ -76,3 +84,5 @@ form.addEventListener("submit", function(event) {
 
     input.value = "";
 });
+
+renderTasks();
