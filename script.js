@@ -1,4 +1,18 @@
-let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+let tasks = [];
+
+try {
+    const savedTasks = localStorage.getItem("tasks");
+
+    if (savedTasks) {
+        const parsedTasks = JSON.parse(savedTasks);
+
+        if (Array.isArray(parsedTasks)) {
+            tasks = parsedTasks;
+        }
+    }
+} catch (error) {
+    tasks = [];
+}
 
 const form = document.querySelector("form");
 const input = document.querySelector("#input");
@@ -35,10 +49,11 @@ function renderTasks() {
                 return item.id === task.id;
             });
 
-            taskToUpdate.completed = checkbox.checked;
-            saveTasks();
-
-            renderTasks();
+            if (taskToUpdate) {
+                taskToUpdate.completed = checkbox.checked;
+                saveTasks();
+                renderTasks();
+            }
         });
 
         deleteButton.addEventListener("click", function() {
@@ -46,10 +61,11 @@ function renderTasks() {
                 return item.id === task.id;
             });
 
-            tasks.splice(index, 1);
-            saveTasks();
-
-            renderTasks();
+            if (index !== -1) {
+                tasks.splice(index, 1);
+                saveTasks();
+                renderTasks();
+            }
         });
 
         li.appendChild(checkbox);
