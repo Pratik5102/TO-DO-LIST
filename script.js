@@ -17,6 +17,7 @@ try {
 const form = document.querySelector("form");
 const input = document.querySelector("#input");
 const taskList = document.querySelector("#list");
+const taskCount = document.querySelector("#task-count");
 
 function saveTasks() {
     localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -24,6 +25,12 @@ function saveTasks() {
 
 function renderTasks() {
     taskList.innerHTML = "";
+
+    const activeTasks = tasks.filter(function(task) {
+        return !task.completed;
+    });
+
+    taskCount.textContent = activeTasks.length + " tasks left";
 
     tasks.forEach(function(task) {
         const li = document.createElement("li");
