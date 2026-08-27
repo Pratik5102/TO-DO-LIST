@@ -18,6 +18,7 @@ const form = document.querySelector("form");
 const input = document.querySelector("#input");
 const taskList = document.querySelector("#list");
 const taskCount = document.querySelector("#task-count");
+const clearCompletedButton = document.querySelector("#clear-completed");
 
 function saveTasks() {
     localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -106,6 +107,15 @@ form.addEventListener("submit", function(event) {
     renderTasks();
 
     input.value = "";
+});
+
+clearCompletedButton.addEventListener("click", function() {
+    tasks = tasks.filter(function(task) {
+        return !task.completed;
+    });
+
+    saveTasks();
+    renderTasks();
 });
 
 renderTasks();
