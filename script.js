@@ -1,4 +1,5 @@
 let tasks = [];
+let currentFilter = "all";
 
 try {
     const savedTasks = localStorage.getItem("tasks");
@@ -19,6 +20,7 @@ const input = document.querySelector("#input");
 const taskList = document.querySelector("#list");
 const taskCount = document.querySelector("#task-count");
 const clearCompletedButton = document.querySelector("#clear-completed");
+const filterButtons = document.querySelectorAll(".filter-btn");
 
 function saveTasks() {
     localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -33,7 +35,21 @@ function renderTasks() {
 
     taskCount.textContent = activeTasks.length + " tasks left";
 
-    tasks.forEach(function(task) {
+    let tasksToShow = tasks;
+
+    if (currentFilter === "active") {
+        tasksToShow = tasks.filter(function(task) {
+            return !task.completed;
+        });
+    }
+
+    if (currentFilter === "completed") {
+        tasksToShow = tasks.filter(function(task) {
+            return task.completed;
+        });
+    }
+
+    tasksToShow.forEach(function(task) {
         const li = document.createElement("li");
 
         const checkbox = document.createElement("input");
@@ -116,6 +132,20 @@ clearCompletedButton.addEventListener("click", function() {
 
     saveTasks();
     renderTasks();
+});
+
+filterButtons.forEach(function(button) {
+    button.addEventListener("click", function() {
+        currentFilter = button.dataset.filter;
+
+        filterButtons.forEach(function(btn) {
+            btn.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+        renderTasks();
+    });
 });
 
 renderTasks();

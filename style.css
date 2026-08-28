@@ -1,23 +1,28 @@
-body{
+body {
     margin: 20px;
     padding: 20px;
     background-color: #0F172A;
-    font-family:  Arial, sans-serif;
+    font-family: Arial, sans-serif;
     color: #CBD5E1;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
-.container{
-    max-width: 200px;
+
+.container {
+    max-width: 400px;
+    width: 100%;
     margin: 0 auto;
 }
+
 h1 {
     color: #F8FAFC;
 }
+
 form {
     margin-bottom: 20px;
 }
+
 #input {
     padding: 10px;
     background-color: #334155;
@@ -25,7 +30,8 @@ form {
     border: 1px solid #475569;
     border-radius: 6px;
 }
-#button{
+
+#button {
     padding: 10px 18px;
     background-color: #3B82F6;
     color: white;
@@ -33,12 +39,54 @@ form {
     border-radius: 6px;
     cursor: pointer;
 }
+
 button:hover {
     background-color: #2563EB;
 }
+
 button:focus {
     outline: none;
 }
+
+#task-count {
+    color: #94A3B8;
+    margin: 10px 0 20px;
+}
+
+.filters {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.filter-btn {
+    padding: 8px 12px;
+    background-color: #334155;
+    color: #CBD5E1;
+    border: 1px solid #475569;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.filter-btn.active {
+    background-color: #3B82F6;
+    color: white;
+}
+
+#clear-completed {
+    padding: 8px 12px;
+    background-color: #475569;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+#clear-completed:hover {
+    background-color: #64748B;
+}
+
 li {
     background-color: #334155;
     color: #F8FAFC;
@@ -46,32 +94,22 @@ li {
     margin: 10px 0;
     border-radius: 6px;
     border: 1px solid #475569;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
-ul{
+
+ul {
     padding: 0;
-    margin: 20px;
+    margin: 20px 0;
 }
-@media (max-width: 600px) {
-    .container {
-        width: 100%;
-    }
 
-    form {
-        display: flex;
-        gap: 10px;
-    }
-
-    input {
-        min-width: 0;
-        flex: 1;
-    }
-
-    button {
-        flex-shrink: 0;
-    }
+.task-checkbox {
+    flex-shrink: 0;
 }
+
 .delete-btn {
-    margin-left: 10px;
+    margin-left: auto;
     padding: 5px 10px;
     border: none;
     border-radius: 5px;
@@ -86,7 +124,32 @@ ul{
     outline: 2px solid;
     outline-offset: 2px;
 }
+
 .completed {
     text-decoration: line-through;
     opacity: 0.6;
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 100%;
+    }
+
+    form {
+        display: flex;
+        gap: 10px;
+    }
+
+    #input {
+        min-width: 0;
+        flex: 1;
+    }
+
+    #button {
+        flex-shrink: 0;
+    }
+
+    .filters {
+        flex-wrap: wrap;
+    }
 }
