@@ -63,6 +63,7 @@ function renderTasks() {
         const deleteButton = document.createElement("button");
         deleteButton.textContent = "Delete";
         deleteButton.classList.add("delete-btn");
+        deleteButton.type = "button";
 
         if (task.completed) {
             li.classList.add("completed");
@@ -75,6 +76,7 @@ function renderTasks() {
 
             if (taskToUpdate) {
                 taskToUpdate.completed = checkbox.checked;
+
                 saveTasks();
                 renderTasks();
             }
@@ -87,6 +89,7 @@ function renderTasks() {
 
             if (index !== -1) {
                 tasks.splice(index, 1);
+
                 saveTasks();
                 renderTasks();
             }
@@ -116,13 +119,12 @@ form.addEventListener("submit", function(event) {
     };
 
     tasks.push(newTask);
+
     saveTasks();
-
-    console.log(tasks);
-
     renderTasks();
 
     input.value = "";
+    input.focus();
 });
 
 clearCompletedButton.addEventListener("click", function() {

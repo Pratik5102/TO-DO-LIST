@@ -14,19 +14,46 @@
         <p>Daily Tasks</p>
 
         <form>
-            <input type="text" id="input" placeholder="Enter your task">
-            <button id="button">Add</button>
+            <input
+                type="text"
+                id="input"
+                placeholder="Enter your task"
+            >
+
+            <button id="button" type="submit">Add</button>
         </form>
 
         <p id="task-count">0 tasks left</p>
 
         <div class="filters">
-            <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="active">Active</button>
-            <button class="filter-btn" data-filter="completed">Completed</button>
+            <button
+                class="filter-btn active"
+                data-filter="all"
+                type="button"
+            >
+                All
+            </button>
+
+            <button
+                class="filter-btn"
+                data-filter="active"
+                type="button"
+            >
+                Active
+            </button>
+
+            <button
+                class="filter-btn"
+                data-filter="completed"
+                type="button"
+            >
+                Completed
+            </button>
         </div>
 
-        <button id="clear-completed">Clear Completed</button>
+        <button id="clear-completed" type="button">
+            Clear Completed
+        </button>
 
         <ul id="list"></ul>
     </div>

@@ -40,14 +40,6 @@ form {
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #2563EB;
-}
-
-button:focus {
-    outline: none;
-}
-
 #task-count {
     color: #94A3B8;
     margin: 10px 0 20px;
@@ -83,10 +75,6 @@ button:focus {
     margin-bottom: 15px;
 }
 
-#clear-completed:hover {
-    background-color: #64748B;
-}
-
 li {
     background-color: #334155;
     color: #F8FAFC;
@@ -116,18 +104,23 @@ ul {
     cursor: pointer;
 }
 
-.delete-btn:hover {
-    opacity: 0.8;
-}
-
-.delete-btn:focus {
-    outline: 2px solid;
-    outline-offset: 2px;
-}
-
 .completed {
     text-decoration: line-through;
     opacity: 0.6;
+}
+
+input:focus,
+button:focus {
+    outline: 2px solid #3B82F6;
+    outline-offset: 2px;
+}
+
+#input:focus {
+    border-color: #3B82F6;
+}
+
+button:hover {
+    opacity: 0.9;
 }
 
 @media (max-width: 600px) {
