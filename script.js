@@ -21,6 +21,7 @@ const taskList = document.querySelector("#list");
 const taskCount = document.querySelector("#task-count");
 const clearCompletedButton = document.querySelector("#clear-completed");
 const filterButtons = document.querySelectorAll(".filter-btn");
+const emptyMessage = document.querySelector("#empty-message");
 
 function saveTasks() {
     localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -47,6 +48,12 @@ function renderTasks() {
         tasksToShow = tasks.filter(function(task) {
             return task.completed;
         });
+    }
+
+    if (tasksToShow.length === 0) {
+        emptyMessage.style.display = "block";
+    } else {
+        emptyMessage.style.display = "none";
     }
 
     tasksToShow.forEach(function(task) {
