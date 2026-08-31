@@ -151,3 +151,8 @@ button:hover {
     text-align: center;
     margin: 20px 0;
 }
+#input-message {
+    color: #F87171;
+    margin: 8px 0 15px;
+    min-height: 18px;
+}
