@@ -22,6 +22,7 @@ const taskCount = document.querySelector("#task-count");
 const clearCompletedButton = document.querySelector("#clear-completed");
 const filterButtons = document.querySelectorAll(".filter-btn");
 const emptyMessage = document.querySelector("#empty-message");
+const inputMessage = document.querySelector("#input-message");
 
 function saveTasks() {
     localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -116,8 +117,12 @@ form.addEventListener("submit", function(event) {
     const task = input.value.trim();
 
     if (task === "") {
+        inputMessage.textContent = "Please enter a task.";
+        input.focus();
         return;
     }
+
+    inputMessage.textContent = "";
 
     const newTask = {
         id: Date.now(),
@@ -132,6 +137,12 @@ form.addEventListener("submit", function(event) {
 
     input.value = "";
     input.focus();
+});
+
+input.addEventListener("input", function() {
+    if (input.value.trim() !== "") {
+        inputMessage.textContent = "";
+    }
 });
 
 clearCompletedButton.addEventListener("click", function() {
