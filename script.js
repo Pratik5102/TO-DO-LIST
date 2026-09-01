@@ -116,12 +116,11 @@ form.addEventListener("submit", function(event) {
 
     const task = input.value.trim();
 
-    if (task === "") {
-        inputMessage.textContent = "Please enter a task.";
-        input.focus();
-        return;
-    }
-
+   if (task === "") {
+    inputMessage.textContent = "Please enter a task.";
+    input.focus();
+    return;
+}
     inputMessage.textContent = "";
 
     const newTask = {
