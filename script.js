@@ -1,6 +1,7 @@
 let tasks = [];
 let currentFilter = "all";
 
+// Load saved tasks from localStorage
 try {
     const savedTasks = localStorage.getItem("tasks");
 
@@ -24,10 +25,12 @@ const filterButtons = document.querySelectorAll(".filter-btn");
 const emptyMessage = document.querySelector("#empty-message");
 const inputMessage = document.querySelector("#input-message");
 
+// Save current tasks to localStorage
 function saveTasks() {
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
+// Display tasks according to the selected filter
 function renderTasks() {
     taskList.innerHTML = "";
 
@@ -51,6 +54,7 @@ function renderTasks() {
         });
     }
 
+    // Show message when the selected list is empty
     if (tasksToShow.length === 0) {
         emptyMessage.style.display = "block";
     } else {
@@ -77,6 +81,7 @@ function renderTasks() {
             li.classList.add("completed");
         }
 
+        // Update completed status when checkbox changes
         checkbox.addEventListener("change", function() {
             const taskToUpdate = tasks.find(function(item) {
                 return item.id === task.id;
@@ -90,6 +95,7 @@ function renderTasks() {
             }
         });
 
+        // Delete the selected task
         deleteButton.addEventListener("click", function() {
             const index = tasks.findIndex(function(item) {
                 return item.id === task.id;
@@ -111,16 +117,19 @@ function renderTasks() {
     });
 }
 
+// Add a new task
 form.addEventListener("submit", function(event) {
     event.preventDefault();
 
     const task = input.value.trim();
 
-   if (task === "") {
-    inputMessage.textContent = "Please enter a task.";
-    input.focus();
-    return;
-}
+    // Show message if input is empty
+    if (task === "") {
+        inputMessage.textContent = "Please enter a task.";
+        input.focus();
+        return;
+    }
+
     inputMessage.textContent = "";
 
     const newTask = {
@@ -138,12 +147,14 @@ form.addEventListener("submit", function(event) {
     input.focus();
 });
 
+// Hide the empty input message when the user starts typing
 input.addEventListener("input", function() {
     if (input.value.trim() !== "") {
         inputMessage.textContent = "";
     }
 });
 
+// Remove all completed tasks
 clearCompletedButton.addEventListener("click", function() {
     tasks = tasks.filter(function(task) {
         return !task.completed;
@@ -153,6 +164,7 @@ clearCompletedButton.addEventListener("click", function() {
     renderTasks();
 });
 
+// Change the current task filter
 filterButtons.forEach(function(button) {
     button.addEventListener("click", function() {
         currentFilter = button.dataset.filter;
@@ -167,4 +179,5 @@ filterButtons.forEach(function(button) {
     });
 });
 
+// Display saved tasks when the page opens
 renderTasks();
